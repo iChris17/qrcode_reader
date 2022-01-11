@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import {
   Text,
@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   barcodebox: {
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     height: 500,

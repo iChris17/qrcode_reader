@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Text, StyleSheet, FlatList, View, SafeAreaView } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  FlatList,
+  View,
+  SafeAreaView,
+  Platform,
+} from "react-native";
 import { useSelector } from "react-redux";
 import SearchInput from "../components/SearchInput";
+import PropTypes from "prop-types";
 
 const Item = ({ item }) => {
   return (
@@ -76,5 +84,9 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 });
+
+Item.propTypes = {
+  item: PropTypes.string.isRequired,
+};
 
 export default QrList;

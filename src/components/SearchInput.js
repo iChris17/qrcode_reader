@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+import PropTypes from "prop-types";
 
 const SearchInput = ({ onSearchEnter }) => {
   const [term, setTerm] = useState("");
@@ -61,5 +62,9 @@ const styles = StyleSheet.create({
     color: "grey",
   },
 });
+
+SearchInput.propTypes = {
+  onSearchEnter: PropTypes.func.isRequired,
+};
 
 export default SearchInput;
