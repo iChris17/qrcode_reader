@@ -1,19 +1,12 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-//actions
-export const storeNewQrData = ({ stringDecoded }) => {
-  return (dispatch) => {
-    dispatch({ type: "SAVE_QRDATA", payload: stringDecoded });
-  };
-};
-
-//reducers
+//reducer
 const initialState = {
   QRData: [],
 };
 
-const qrReducer = (state = initialState, action) => {
+export const qrReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SAVE_QRDATA":
       return {
