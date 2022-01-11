@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Text, SafeAreaView, Button, StyleSheet, View } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { store } from "../redux/index";
+import { useDispatch } from "react-redux";
 
 const QrReader = () => {
   const [hasPermissions, setHasPermissions] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("");
+  const dispatch = useDispatch();
 
   const askForCameraPermission = () => {
     (async () => {
@@ -28,7 +29,7 @@ const QrReader = () => {
     setText(QRData);
 
     if (type === 256) {
-      store.dispatch({ type: "SAVE_QRDATA", payload: QRData });
+      dispatch({ type: "SAVE_QRDATA", payload: QRData });
     }
   };
 

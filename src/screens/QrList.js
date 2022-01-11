@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, StyleSheet, FlatList, View, SafeAreaView } from "react-native";
+import { useSelector } from "react-redux";
 import SearchInput from "../components/SearchInput";
 
 const Item = ({ item }) => {
@@ -12,6 +13,12 @@ const Item = ({ item }) => {
 
 const QrList = () => {
   const [QRData, setQRData] = useState([]);
+
+  const datafromredux = useSelector((state) => state.QRData);
+
+  useEffect(() => {
+    setQRData(datafromredux);
+  }, [datafromredux]);
 
   const handleFilter = (valueSearch = "") => {
     const filterList = QRData.filter((qr) => {

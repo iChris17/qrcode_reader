@@ -39,18 +39,18 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "row",
     justifyContent: "space-between",
-    borderRadius:15,
-    margin:10
+    borderRadius: 15,
+    margin: 10,
   },
   iconStyleLeft: {
     marginTop: 12,
     marginHorizontal: 8,
-    marginLeft:12
+    marginLeft: 12,
   },
   iconStyleRight: {
     marginTop: 12,
     marginHorizontal: 8,
-    marginRight:15
+    marginRight: 15,
   },
   searchInputStyle: {
     flex: 1,
