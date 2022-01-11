@@ -20,7 +20,11 @@ const QrList = () => {
     setQRData(datafromredux);
   }, [datafromredux]);
 
-  const handleFilter = (valueSearch = "") => {
+  const handleFilter = (valueSearch) => {
+    if (valueSearch === "") {
+      setQRData(datafromredux);
+      return;
+    }
     const filterList = QRData.filter((qr) => {
       return qr.toLowerCase().includes(valueSearch.toLowerCase());
     });
