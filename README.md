@@ -7,7 +7,7 @@ QR Code Scanner App for NicaSource Assesment
 Use yarn package to install dependencies
 
 ```bash
-yarn start
+yarn install
 ```
 
 ## Usage
