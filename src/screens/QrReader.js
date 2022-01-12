@@ -24,6 +24,9 @@ const QrReader = () => {
       setIsVisible(true);
       return () => {
         setIsVisible(false);
+        setHasPermissions(null);
+        setScanned(false);
+        setText("");
       };
     }, [])
   );
@@ -45,7 +48,7 @@ const QrReader = () => {
     dispatch({ type: "SAVE_QRDATA", payload: QRData });
   };
 
-  if (!hasPermissions) {
+  if (hasPermissions === false) {
     return (
       <SafeAreaView style={styles.container}>
         <Text>You need to allow the app to use the camera</Text>
