@@ -39,27 +39,23 @@ const QrList = () => {
     setQRData(filterList);
   };
 
-  if (QRData.length === 0) {
-    return (
-      <SafeAreaView style={{ padding: 10, alignItems: "center" }}>
-        <Text style={{ fontSize: 16, fontWeight: "bold" }}>
-          There are no QR Codes scanned. Please, go and scan some
-        </Text>
-      </SafeAreaView>
-    );
-  }
-
   return (
     <SafeAreaView>
       <SearchInput onSearchEnter={handleFilter} />
-      <FlatList
-        data={QRData}
-        numColumns={1}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(data, index) => index}
-        renderItem={({ item }) => <Item item={item} />}
-        contentContainerStyle={styles.flatListcontainer}
-      />
+      {QRData.length === 0 ? (
+        <Text style={{ fontSize: 16, fontWeight: "bold", marginLeft: 15 }}>
+          No QR Codes found
+        </Text>
+      ) : (
+        <FlatList
+          data={QRData}
+          numColumns={1}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(data, index) => index}
+          renderItem={({ item }) => <Item item={item} />}
+          contentContainerStyle={styles.flatListcontainer}
+        />
+      )}
     </SafeAreaView>
   );
 };

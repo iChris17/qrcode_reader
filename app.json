@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "QR Code Scanner App for NicaSource Assesment",
+    "githubUrl": "https://github.com/iChris17/qrcode_reader"
   }
 }

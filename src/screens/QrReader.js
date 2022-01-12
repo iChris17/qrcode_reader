@@ -12,7 +12,6 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { useDispatch } from "react-redux";
 
 const QrReader = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [hasPermissions, setHasPermissions] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState("");
@@ -21,9 +20,7 @@ const QrReader = () => {
   useFocusEffect(
     useCallback(() => {
       askForCameraPermission();
-      setIsVisible(true);
       return () => {
-        setIsVisible(false);
         setHasPermissions(null);
         setScanned(false);
         setText("");
@@ -48,7 +45,16 @@ const QrReader = () => {
     dispatch({ type: "SAVE_QRDATA", payload: QRData });
   };
 
-  if (hasPermissions === false) {
+  if (hasPermissions === null) {
+    return (
+      <View style={styles.container}>
+        <Text>Loading camera</Text>
+        <ActivityIndicator size="large" color="#AEAEAE" />
+      </View>
+    );
+  }
+
+  if (!hasPermissions) {
     return (
       <SafeAreaView style={styles.container}>
         <Text>You need to allow the app to use the camera</Text>
@@ -59,28 +65,19 @@ const QrReader = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {!isVisible ? (
-        <>
-          <Text>Loading camera</Text>
-          <ActivityIndicator size="large" color="#AEAEAE" />
-        </>
-      ) : (
-        <>
-          <View style={styles.barcodebox}>
-            <BarCodeScanner
-              onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-              style={{ height: 500, width: 600 }}
-            />
-          </View>
-          <Text style={styles.text}>{text}</Text>
-          <Button
-            title={!scanned ? "Scanning" : "Scan"}
-            onPress={() => setScanned(false)}
-            color={"skyblue"}
-            disabled={!scanned}
-          />
-        </>
-      )}
+      <View style={styles.barcodebox}>
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={{ height: 500, width: 600 }}
+        />
+      </View>
+      <Text style={styles.text}>{text}</Text>
+      <Button
+        title={!scanned ? "Scanning" : "Scan"}
+        onPress={() => setScanned(false)}
+        color={"skyblue"}
+        disabled={!scanned}
+      />
     </SafeAreaView>
   );
 };
